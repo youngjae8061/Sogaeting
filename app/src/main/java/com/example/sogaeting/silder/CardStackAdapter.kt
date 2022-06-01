@@ -36,6 +36,7 @@ class CardStackAdapter (val context:Context, val items:List<UserDataModel>) : Re
         val itemCity = itemView.findViewById<TextView>(R.id.itemCity)
         fun binding(data:UserDataModel){
 
+            // 이미지 가져오기
             val storageRef = Firebase.storage.reference.child("${data.uid}.png")
             storageRef.downloadUrl.addOnCompleteListener(OnCompleteListener { task ->
                 if(task.isSuccessful){

@@ -9,6 +9,7 @@ import com.example.sogaeting.auth.IntroActivity
 import com.example.sogaeting.auth.UserDataModel
 import com.example.sogaeting.databinding.ActivityIntroBinding
 import com.example.sogaeting.databinding.ActivityMainBinding
+import com.example.sogaeting.setting.SettingActivity
 import com.example.sogaeting.silder.CardStackAdapter
 import com.example.sogaeting.utils.FirebaseRef
 import com.google.firebase.auth.ktx.auth
@@ -37,12 +38,8 @@ class MainActivity : AppCompatActivity() {
         bind = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        //로그아웃
-        bind.logoutBtn.setOnClickListener {
-            val auth = Firebase.auth
-            auth.signOut()
-
-            val intent = Intent(this, IntroActivity::class.java)
+        bind.setting.setOnClickListener {
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
 

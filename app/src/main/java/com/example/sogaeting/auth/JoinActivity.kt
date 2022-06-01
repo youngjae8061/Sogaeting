@@ -73,8 +73,8 @@ class JoinActivity : AppCompatActivity() {
 
 
                         // 메인화면으로 이동
-//                        val intent = Intent(this, MainActivity::class.java)
-//                        startActivity(intent)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
