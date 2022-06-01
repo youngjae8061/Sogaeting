@@ -1,9 +1,15 @@
 package com.example.sogaeting
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.sogaeting.auth.IntroActivity
+import com.example.sogaeting.databinding.ActivityIntroBinding
+import com.example.sogaeting.databinding.ActivityMainBinding
 import com.example.sogaeting.silder.CardStackAdapter
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.CardStackView
@@ -11,14 +17,25 @@ import com.yuyakaido.android.cardstackview.Direction
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var bind : ActivityMainBinding
+
     lateinit var cardStackAdapter: CardStackAdapter
     lateinit var manager : CardStackLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        bind = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bind.root)
 
-        val cardStackView = findViewById<CardStackView>(R.id.cardStackView)
+        //로그아웃
+        bind.logoutBtn.setOnClickListener {
+            val auth = Firebase.auth
+            auth.signOut()
+
+            val intent = Intent(this, IntroActivity::class.java)
+            startActivity(intent)
+        }
+
 
         manager = CardStackLayoutManager(baseContext, object : CardStackListener{
             override fun onCardDragging(p0: Direction?, p1: Float) {
@@ -52,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         testList.add("c")
 
         cardStackAdapter = CardStackAdapter(baseContext, testList)
-        cardStackView.layoutManager = manager
-        cardStackView.adapter = cardStackAdapter
+        bind.cardStackView.layoutManager = manager
+        bind.cardStackView.adapter = cardStackAdapter
     }
 }

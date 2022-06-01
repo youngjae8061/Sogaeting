@@ -1,4 +1,4 @@
-package com.example.sogaeting
+package com.example.sogaeting.auth
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

@@ -1,15 +1,15 @@
-package com.example.sogaeting
+package com.example.sogaeting.auth
 
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.example.sogaeting.MainActivity
 import com.example.sogaeting.databinding.ActivityJoinBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.jetbrains.anko.toast
 
 class JoinActivity : AppCompatActivity() {
     lateinit var bind : ActivityJoinBinding
@@ -29,6 +29,8 @@ class JoinActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
+                        val user = auth.currentUser
+                        Log.d(TAG, "${user?.uid.toString()}")
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
