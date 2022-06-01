@@ -19,5 +19,10 @@ class IntroActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        bind.loginBtn.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 }
