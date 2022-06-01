@@ -17,6 +17,7 @@
             android:src="@drawable/no"/>
 
         <TextView
+            android:id="@+id/itemNickname"
             android:text="이름"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -26,6 +27,7 @@
             android:textColor="#CCBBAA"/>
 
         <TextView
+            android:id="@+id/itemAge"
             android:text="나이"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,6 +37,7 @@
             android:textColor="#CCBBAA"/>
 
         <TextView
+            android:id="@+id/itemCity"
             android:text="지역"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
