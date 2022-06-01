@@ -91,6 +91,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutPwdCheck">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nickname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -107,6 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -123,6 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSex">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/city"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
@@ -140,6 +143,7 @@
                 app:layout_constraintBottom_toTopOf="@id/join">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/age"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
