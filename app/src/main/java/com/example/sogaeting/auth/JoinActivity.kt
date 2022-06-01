@@ -5,6 +5,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.sogaeting.MainActivity
 import com.example.sogaeting.databinding.ActivityJoinBinding
 import com.example.sogaeting.utils.FirebaseRef
@@ -31,7 +33,14 @@ class JoinActivity : AppCompatActivity() {
 
         auth = Firebase.auth
 
-        // 닉네임 성별 지역 나이 UID 값 받아오기
+        val getAction = registerForActivityResult(ActivityResultContracts.GetContent(), ActivityResultCallback { uri ->
+            bind.joinProfile.setImageURI(uri)
+        })
+
+        bind.joinProfile.setOnClickListener {
+            // 앨범 열기
+            getAction.launch("image/*")
+        }
 
 
         bind.join.setOnClickListener {
