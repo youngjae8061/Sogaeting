@@ -60,7 +60,7 @@ class MyPageActivity : AppCompatActivity() {
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
             }
         }
-        // 어디에서 가져올거냐?
+        // 어디에서 가져올거냐? (경로)
         FirebaseRef.userInfoRef.child(uid).addValueEventListener(postListener)
     }
 }
