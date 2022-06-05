@@ -62,11 +62,9 @@ class MainActivity : AppCompatActivity() {
 
             override fun onCardSwiped(direction: Direction?) {
                 if(direction == Direction.Right){
-                    toast("오른쪽")
                     userLikeOtherUser(uid, usersDataList[userCount].uid.toString())
                 }
                 if(direction == Direction.Left){
-                    toast("왼쪽")
                 }
                 userCount++
                 if(userCount == usersDataList.count()){ // 다 넘겨서 더이상 넘길 유저가 없으면
@@ -141,7 +139,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun userLikeOtherUser(myUid : String, otherUid : String){
-        // child(uid) uid로 하위 경로 생성
-        FirebaseRef.userInfoRef.child(myUid).child(otherUid).setValue("true")// 저장될 값
+        FirebaseRef.userIikeRef.child(myUid).child(otherUid).setValue("true")// 저장될 값
+
+        getOtherUserListList(otherUid)
+    }
+
+    // 내가 좋아요한 사람이 나를 좋아하는지
+    private fun getOtherUserListList(otherUid: String){
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for (dataModel in dataSnapshot.children) {
+                    if (dataModel.key.toString() == uid) {
+                        toast("매칭완료")
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException())
+            }
+        }
+        // 어디에서 가져올거냐?
+        FirebaseRef.userIikeRef.child(otherUid).addValueEventListener(postListener)
     }
 }
