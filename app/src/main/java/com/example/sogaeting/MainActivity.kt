@@ -21,6 +21,7 @@ import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.Direction
+import org.jetbrains.anko.toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
 
     private val usersDataList = mutableListOf<UserDataModel>()
+    private var userCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +51,18 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            override fun onCardSwiped(p0: Direction?) {
-
+            override fun onCardSwiped(direction: Direction?) {
+                if(direction == Direction.Right){
+                    toast("오른쪽")
+                }
+                if(direction == Direction.Left){
+                    toast("왼쪽")
+                }
+                userCount++
+                if(userCount == usersDataList.count()){ // 다 넘겨서 더이상 넘길 유저가 없으면
+                    getUserDataList() // 다시 유저 가져오기
+                    toast("유저 새롭게 받아오기")
+                }
             }
 
             override fun onCardRewound() {
