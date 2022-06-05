@@ -1,10 +1,16 @@
 package com.example.sogaeting
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.bumptech.glide.Glide
 import com.example.sogaeting.auth.IntroActivity
 import com.example.sogaeting.auth.UserDataModel
@@ -151,6 +157,8 @@ class MainActivity : AppCompatActivity() {
                 for (dataModel in dataSnapshot.children) {
                     if (dataModel.key.toString() == uid) {
                         toast("매칭완료")
+                        createNotificationCannel()
+                        sendNotification()
                     }
                 }
             }
@@ -162,5 +170,33 @@ class MainActivity : AppCompatActivity() {
         }
         // 어디에서 가져올거냐?
         FirebaseRef.userIikeRef.child(otherUid).addValueEventListener(postListener)
+    }
+
+    private fun createNotificationCannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "name"
+            val descriptionText = "description"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("test_Channel", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
+        }
+    }
+
+    private fun sendNotification(){
+        var builder = NotificationCompat.Builder(this, "test_Channel")
+            .setSmallIcon(R.drawable.ic_launcher_background)
+            .setContentTitle("매칭완료")
+            .setContentText("통했네요!")
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        with(NotificationManagerCompat.from(this)){
+            notify(123, builder.build())
+        }
     }
 }
