@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             override fun onCardSwiped(direction: Direction?) {
                 if(direction == Direction.Right){
                     toast("오른쪽")
+                    userLikeOtherUser(uid, usersDataList[userCount].uid.toString())
                 }
                 if(direction == Direction.Left){
                     toast("왼쪽")
@@ -137,5 +138,10 @@ class MainActivity : AppCompatActivity() {
         }
         // 어디에서 가져올거냐?
         FirebaseRef.userInfoRef.addValueEventListener(postListener)
+    }
+
+    private fun userLikeOtherUser(myUid : String, otherUid : String){
+        // child(uid) uid로 하위 경로 생성
+        FirebaseRef.userInfoRef.child(myUid).child(otherUid).setValue("true")// 저장될 값
     }
 }

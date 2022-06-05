@@ -8,5 +8,6 @@ class FirebaseRef {
         // 데이터베이스에 쓰기
         val database = Firebase.database
         val userInfoRef = database.getReference("userInfo") // 데이터 저장 경로
+        val userIikeRef = database.getReference("userIike") //
     }
 }
