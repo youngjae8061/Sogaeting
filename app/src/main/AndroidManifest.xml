@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sogaeting">
-        <activity android:name=".setting.SettingActivity"></activity>
+        <activity android:name=".message.MyLikeListActivity"></activity>
+        <activity android:name=".setting.SettingActivity" />
         <activity android:name=".setting.MyPageActivity" />
         <activity android:name=".auth.LoginActivity" />
         <activity android:name=".auth.JoinActivity" />

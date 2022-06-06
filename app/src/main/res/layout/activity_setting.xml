@@ -10,8 +10,17 @@
         android:id="@+id/myPageBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="myPage"
+        android:text="my Page"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/myLikeListBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Matching List"
+        app:layout_constraintTop_toBottomOf="@+id/myPageBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -20,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="LogOut"
-        app:layout_constraintTop_toBottomOf="@+id/myPageBtn"
+        app:layout_constraintTop_toBottomOf="@+id/myLikeListBtn"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
