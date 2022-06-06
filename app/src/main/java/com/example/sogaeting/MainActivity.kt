@@ -122,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         FirebaseRef.userInfoRef.child(uid).addValueEventListener(postListener)
     }
 
+    // 유저 불러오기 - 성별이 나와 다른 유저
     private fun getUserDataList(currentUserGender : String) {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
@@ -150,7 +151,7 @@ class MainActivity : AppCompatActivity() {
         getOtherUserListList(otherUid)
     }
 
-    // 내가 좋아요한 사람이 나를 좋아하는지
+    // 다른 사람의 좋아요 리스트 - 내가 좋아요한 사람이 나를 좋아하는지
     private fun getOtherUserListList(otherUid: String){
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
