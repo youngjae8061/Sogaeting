@@ -18,7 +18,11 @@ class SettingActivity : AppCompatActivity() {
         bind = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
-        // 첫번째 방법, 앱에서 notification 띄우기
+        // 1. 앱에서 notification 띄우기 - 매칭완료 알림
+        // 2. Firebase 콘솔에서 모든 앱에 Push 보내기
+        // 3. Firebase 콘솔에서 특정 사용자에게 메세제 보내기
+
+        // 4. Firebase 콘솔 말고 앱에서 직접 다른 사람에게 Push 메세지 보내기-
 
 
 
