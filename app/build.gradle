@@ -59,6 +59,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-database-ktx'
     // firebase storage
     implementation 'com.google.firebase:firebase-storage-ktx'
+    // firebase notification
+    implementation 'com.google.firebase:firebase-messaging-ktx'
 
     // todo jetbrains
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

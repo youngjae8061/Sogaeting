@@ -18,6 +18,10 @@ class SettingActivity : AppCompatActivity() {
         bind = ActivitySettingBinding.inflate(layoutInflater)
         setContentView(bind.root)
 
+        // 첫번째 방법, 앱에서 notification 띄우기
+
+
+
         bind.myPageBtn.setOnClickListener {
             val intent = Intent(this, MyPageActivity::class.java)
             startActivity(intent)
