@@ -3,14 +3,17 @@ package com.example.sogaeting.message
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ListView
 import com.example.sogaeting.R
 import com.example.sogaeting.auth.UserDataModel
 import com.example.sogaeting.databinding.ActivityMyLikeListBinding
+import com.example.sogaeting.databinding.ListViewItemBinding
 import com.example.sogaeting.utils.FirebaseAuthUtils
 import com.example.sogaeting.utils.FirebaseRef
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import org.jetbrains.anko.listView
 import org.jetbrains.anko.toast
 
 class MyLikeListActivity : AppCompatActivity() {
@@ -22,10 +25,17 @@ class MyLikeListActivity : AppCompatActivity() {
     private val likeUserList = mutableListOf<UserDataModel>()
     private val likeUserListUid = mutableListOf<String>()
 
+    lateinit var listViewAdapter : ListViewAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bind = ActivityMyLikeListBinding.inflate(layoutInflater)
         setContentView(bind.root)
+
+        val userListView = findViewById<ListView>(R.id.userListView)
+        listViewAdapter = ListViewAdapter(this, likeUserList)
+
+        userListView.adapter = listViewAdapter
 
         getMyLikeList()
         getUserDataList()
@@ -62,6 +72,7 @@ class MyLikeListActivity : AppCompatActivity() {
                         likeUserList.add(user!!)
                     }
                 }
+                listViewAdapter.notifyDataSetChanged()
                 Log.e(TAG, "point : ${likeUserList.toString()}")
 
             }
