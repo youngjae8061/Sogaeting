@@ -47,14 +47,20 @@ class MyLikeListActivity : AppCompatActivity() {
     private fun checkMatching(otherUid : String){
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                for (dataModel in dataSnapshot.children) {
-                    val likeUserKey = dataModel.key.toString()
-                    if (likeUserKey == uid){
-                        toast("매칭완료!")
-                    }else{
-                        toast("매칭되지 않았습니다 ㅠ")
+
+                if(dataSnapshot.children.count() == 0){
+                    toast("매칭되지 않았습니다 ㅠ")
+                } else {
+                    for (dataModel in dataSnapshot.children) {
+                        val likeUserKey = dataModel.key.toString()
+                        if (likeUserKey == uid){
+                            toast("매칭완료!")
+                        }else{
+                            toast("매칭되지 않았습니다 ㅠ")
+                        }
                     }
                 }
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
